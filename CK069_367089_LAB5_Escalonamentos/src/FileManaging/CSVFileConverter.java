@@ -9,17 +9,21 @@ public class CSVFileConverter extends FileManager
 	public class Process
 	{
 		public String id;
-		public int waiting_time;
+		public int arrival_time;
 		public int burst_time;
 		public int priority;
 		
 		public double processing_time;
+		public int waiting_time;
+		public int troughput;
+		public int response_time;
+		public int turnaround;
 		
 		public Process(String process_string)
 		{
 			String[] tokens = process_string.split(" ");
 			
-			waiting_time = Integer.parseInt(tokens[0]);
+			arrival_time = Integer.parseInt(tokens[0]);
 			id = tokens[1];
 			burst_time = Integer.parseInt(tokens[2]);
 			priority = Integer.parseInt(tokens[3]);
