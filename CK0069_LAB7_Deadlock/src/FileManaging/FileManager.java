@@ -21,6 +21,7 @@ public abstract class FileManager
 				output.add(br.readLine());
 			}
 			
+			br.close();
 			return output;
 			
 		} catch (Exception e) {e.printStackTrace();}
