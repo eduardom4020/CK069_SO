@@ -1,6 +1,6 @@
 package DeadlockAlgorithms;
 
-import javax.print.attribute.standard.Finishings;
+import java.util.ArrayList;
 
 import ResourcesManaging.ResourcesManager;
 
@@ -54,7 +54,7 @@ public class BankerAlgorithm
 //confere se estah em estado seguro. Faz a requisicao do need de p0. Se for possivel, repetimos o processo para p1.
 //Se nao for possivel, bloqueamos p0 e tentamos em p1. Quando o need de um processo for zero, este eh terminado e adicionado a 
 //lista de finish.
-	public ArrayList<Integer> detection()
+	public ArrayList<String> detection()
 	{		
 		for(int j=0; j<rm.n; j++)
 		{
