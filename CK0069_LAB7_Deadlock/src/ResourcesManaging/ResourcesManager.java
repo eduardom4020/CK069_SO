@@ -87,10 +87,10 @@ public class ResourcesManager extends FileManager
 			
 			for(int k=0; k<n; k++)	//itera pela quantidade de processos
 			{
-				sum += Allocation.get(n).get(m);
+				sum += Allocation.get(k).get(j);
 			}
 			
-			Avaliable.add(Instances.get(m) - sum);
+			Avaliable.add(Instances.get(j) - sum);
 		}
 	}
 	

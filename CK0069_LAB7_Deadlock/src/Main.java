@@ -28,7 +28,7 @@ public class Main
 			
 		case "AVOID":
 			
-			String request=null;
+			String request="";
 			
 			for(int i=2; i<args.length; i++)
 			{
