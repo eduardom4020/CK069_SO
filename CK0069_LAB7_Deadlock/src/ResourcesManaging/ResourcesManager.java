@@ -150,6 +150,8 @@ public class ResourcesManager extends FileManager
 			Allocation.get(pid).set(i, Allocation.get(pid).get(i) + Integer.parseInt(tokens[i+1]));
 			Need.get(pid).set(i, Max.get(pid).get(i) - Allocation.get(pid).get(i));			
 		}
+		
+		setAvaliable();
 	}
 	
 //remove a solicitacao feita
