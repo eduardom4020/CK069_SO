@@ -22,6 +22,11 @@ public class BankerAlgorithm
 		{
 			for(int j=0; j<resources_types; j++)
 			{
+				//para fins de debug
+				
+				System.out.println("avaliable at "+j+": "+rm.Avaliable.get(j));				
+				System.out.println("need["+i+","+j+"]: "+rm.Need.get(i).get(j));
+				
 			//se o processo i precisa de mais instancias do recurso j que as disponiveis entao temos um deadlock (nao estah seguro)
 				if(rm.Need.get(i).get(j) > rm.Avaliable.get(j))	
 				{

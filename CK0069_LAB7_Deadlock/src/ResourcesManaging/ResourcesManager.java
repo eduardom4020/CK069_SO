@@ -30,8 +30,7 @@ public class ResourcesManager extends FileManager
 	private String actualLine = null;
 	
 	public ResourcesManager(String file_name)
-	{
-		Avaliable = new ArrayList<>();
+	{		
 		Max = new ArrayList<>();
 		Allocation = new ArrayList<>();
 		Need = new ArrayList<>();
@@ -50,10 +49,10 @@ public class ResourcesManager extends FileManager
 		//a primeira linha do arquivo deve conter a quantidade de processos e de tipos de recursos respectivamente
 			if(i==0)
 			{
-				String[] tokens = actualLine.split(" ");
+				m = Integer.parseInt(actualLine);
 				
-				N = Integer.parseInt(tokens[0]);
-				m = Integer.parseInt(tokens[1]);
+				Avaliable = new ArrayList<>();
+				for(int l=0; l<m; l++) Avaliable.add(0);
 			}
 		//a quantidade de instancias para cada tipo de recurso. Os tipos de recurso devem ser iguais a m. Caso passe do valor 
 		//estes serao ignorados, caso nao alcance ocorrerah falha de segmentacao.
@@ -68,14 +67,10 @@ public class ResourcesManager extends FileManager
 			}
 			else
 			{
-				for(int j=0; j<N; j++)	//itera pela quantidade de processos
-				{
-					push_back(actualLine);
-				}
-				
-				setAvaliable();
+				push_back(actualLine);
 			}
 		}
+//		setAvaliable();
 	}
 	
 //calculamos a quantidade de instancias disponiveis para um recurso
@@ -90,7 +85,7 @@ public class ResourcesManager extends FileManager
 				sum += Allocation.get(k).get(j);
 			}
 			
-			Avaliable.add(Instances.get(j) - sum);
+			Avaliable.set(j, (Instances.get(j) - sum));
 		}
 	}
 	
