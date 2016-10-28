@@ -119,12 +119,33 @@ public class ResourcesManager extends FileManager
 		for(int i=0; i<m; i++)
 		{
 			poped.add(Allocation.get(pid).get(i));
-			poped.add(Max.get(pid).get(m+i));
+		}
+		for(int i=0; i<m; i++)
+		{
+			poped.add(Max.get(pid).get(i));
 		}
 		
 		Allocation.remove(pid);
 		Max.remove(pid);
 		Need.remove(pid);
+		
+		for(int i=0; i<RequestBlocked.size(); i++)
+		{
+			String[] tokens = RequestBlocked.get(i).split(" ");
+			
+			if(Integer.parseInt(tokens[0]) > pid)
+			{
+				tokens[0] = String.valueOf(Integer.parseInt(tokens[0]) - 1);
+				String newRequest="";
+				
+				for(int j=0; j<tokens.length; j++)
+				{
+					newRequest += tokens[j]+" ";
+				}
+				
+				RequestBlocked.set(i, newRequest);
+			}		
+		}
 		
 		n -= 1;
 		
@@ -180,7 +201,5 @@ public class ResourcesManager extends FileManager
 	public void finish(int pid)
 	{
 		Finished.add("p"+pid);
-		
-		pop(pid);
 	}
 }

@@ -24,8 +24,8 @@ public class BankerAlgorithm
 			{
 				//para fins de debug
 				
-				System.out.println("avaliable at "+j+": "+rm.Avaliable.get(j));				
-				System.out.println("need["+i+","+j+"]: "+rm.Need.get(i).get(j));
+//				System.out.println("avaliable at "+j+": "+rm.Avaliable.get(j));				
+//				System.out.println("need["+i+","+j+"]: "+rm.Need.get(i).get(j));
 				
 			//se o processo i precisa de mais instancias do recurso j que as disponiveis entao temos um deadlock (nao estah seguro)
 				if(rm.Need.get(i).get(j) > rm.Avaliable.get(j))	
@@ -70,23 +70,37 @@ public class BankerAlgorithm
 				request += " " + rm.Need.get(j).get(i);
 			}
 			
+			System.out.println("request: "+request);
+			
 			
 			if(avoid(request))
 			{
 				rm.finish(j);
+				System.out.println("aceito");
 			}
+			else System.out.println("bloqueado");
+		}
+		
+		for(int i=0; i<rm.Finished.size(); i++)
+		{
+			rm.pop(i);
 		}
 		
 		while(rm.RequestBlocked.size() > 0)
 		{
 			String request_blocked = rm.RequestBlocked.remove(0);
 			
+			System.out.println("request blocked: "+request_blocked);
+			
 			if(avoid(request_blocked))
 			{
 				String[] tokens = request_blocked.split(" ");
 				
 				rm.finish(Integer.parseInt(tokens[0]));
+				
+				System.out.println("aceito");
 			}
+			else System.out.println("bloqueado");
 		}
 		
 		return rm.Finished;
