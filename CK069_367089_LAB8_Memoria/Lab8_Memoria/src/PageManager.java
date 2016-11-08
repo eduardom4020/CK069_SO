@@ -11,8 +11,34 @@ public abstract class PageManager
 	protected Integer head;
 	protected Integer buffer_capacity;
 	
+	protected ArrayList<Integer> pages;
+	
 	protected final Integer MEMORY_TIME = 200; 
 	protected final Integer CHANGE_TIME = 2000000;
+	
+	protected void initialize(String pages_reference, int buffer_capacity)
+	{
+		page_buffer = new ArrayList<>();
+		
+		for(int i=0; i<buffer_capacity; i++)
+			page_buffer.add(-1);
+		
+		buffer_history = "";
+		pageFault = 0;
+		time = 0;
+		time_change = 0;
+		head = 0;
+		this.buffer_capacity = buffer_capacity;
+		
+		pages = new ArrayList<>();
+		
+		String[] tokens = pages_reference.split(",");
+		
+		for(int i=0; i<tokens.length; i++)
+		{
+			pages.add(Integer.parseInt(tokens[i]));
+		}
+	}
 	
 	protected void moveHead()
 	{
