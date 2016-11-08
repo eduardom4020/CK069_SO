@@ -4,8 +4,10 @@ import java.util.ArrayList;
 public abstract class PageManager 
 {
 	protected ArrayList<Integer> page_buffer;
+	protected String buffer_history;
 	protected Integer pageFault;
 	protected Integer time;
+	protected Integer time_change;
 	protected Integer head;
 	protected Integer buffer_capacity;
 	
@@ -24,11 +26,19 @@ public abstract class PageManager
 		}
 	}
 	
-	protected void swap(Integer page_id)
+	protected void set(Integer page_id)
 	{
 		page_buffer.set(head, page_id);
 		moveHead();
+		buffer_history += page_id + " ";
+	}
+	
+	protected void swap(Integer page_id)
+	{
+		set(page_id);
 		time += CHANGE_TIME;
+		time_change += CHANGE_TIME;
+		pageFault += 1;
 	}
 	
 	protected void swap(Integer actual_page_id, Integer new_page_id)
@@ -60,4 +70,9 @@ public abstract class PageManager
 	}
 	
 	public abstract void process();
+	
+	public ResultSet resultSet()
+	{
+		return new ResultSet(buffer_history, time, time_change, pageFault, buffer_capacity);
+	}
 }

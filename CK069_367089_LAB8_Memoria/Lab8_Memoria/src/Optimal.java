@@ -8,8 +8,10 @@ public class Optimal extends PageManager
 	public Optimal(String pages_reference, int buffer_capacity)
 	{
 		page_buffer = new ArrayList<>(buffer_capacity);
+		buffer_history = "";
 		pageFault = 0;
 		time = 0;
+		time_change = 0;
 		head = 0;
 		this.buffer_capacity = buffer_capacity;
 		
@@ -47,7 +49,7 @@ public class Optimal extends PageManager
 		{
 			if(i<buffer_capacity)
 			{
-				swap(pages.get(i));
+				set(pages.get(i));
 			}
 			else if(!acess(pages.get(i)))
 			{
@@ -64,6 +66,7 @@ public class Optimal extends PageManager
 				swap(mostDistant, pages.get(i));
 			}
 			
+			acess(pages.get(i));
 		}
 	}
 }
