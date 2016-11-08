@@ -1,5 +1,10 @@
-import java.util.ArrayList;
-
+/*	A substituição de página ótima:
+ * Quando precisamos acessar uma página que não está no buffer, precisamos
+ * realizar a troca. Sua estrategia se baseia em conferir qual das paginas 
+ * no buffer vai demorar mais a aparecer novamente, baseada em sua posicao
+ * na string de paginas chamadas, e assim substituimos a pagina pela pagina
+ * atualmente requisitada.
+ * */
 
 public class Optimal extends PageManager
 {

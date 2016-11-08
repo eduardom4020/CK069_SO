@@ -18,6 +18,18 @@ public class Main {
 			algorithm = new FIFO(args[1], Integer.parseInt(args[2]));
 			
 			break;
+			
+		case "LRU":
+			
+			algorithm = new LRU(args[1], Integer.parseInt(args[2]));
+			
+			break;
+			
+		case "LFU":
+			
+			algorithm = new LFU(args[1], Integer.parseInt(args[2]));
+			
+			break;
 
 		default:
 			break;

@@ -1,4 +1,10 @@
-
+/*	FIFO:
+ * Se uma substituicao for necessaria, retiramos a primeira pagina
+ * do buffer e adicionamos a nova ao final. 
+ * Nesta implementacao, estamos utilizando um marcador (head) para
+ * indicar qual pagina estah no todo da fila, visto que utilizamos 
+ * um array para representar a fila.
+ * */
 public class FIFO extends PageManager 
 {
 	public FIFO(String pages_reference, int buffer_capacity)
