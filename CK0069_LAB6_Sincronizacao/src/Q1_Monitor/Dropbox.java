@@ -26,7 +26,7 @@ public class Dropbox
 		}
 		
 		lock = false;
-		notify();
+		notifyAll();
 		
 		return number;
 	}
@@ -42,6 +42,6 @@ public class Dropbox
 		evenNumber = number % 2 == 0;
 		lock = true;
 		System.out.format("PRODUTOR gera %d.%n", number);
-		notify();
+		notifyAll();
 	}
 }
