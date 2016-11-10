@@ -30,6 +30,12 @@ public class Main {
 			algorithm = new LFU(args[1], Integer.parseInt(args[2]));
 			
 			break;
+			
+		case "MFU":
+			
+			algorithm = new MFU(args[1], Integer.parseInt(args[2]));
+			
+			break;
 
 		default:
 			break;

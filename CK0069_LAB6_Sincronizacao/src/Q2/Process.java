@@ -4,24 +4,56 @@ import java.util.ArrayList;
 
 public abstract class Process 
 {
-	public ArrayList<Resource> allocate;
+	protected ArrayList<Resource> allocate = null;
 	
-	public void blockResource(String resID)
+	protected Integer findID(String resID)
 	{
-		int i=0;
-		boolean found=false;
-		
-		while((i<allocate.size()) && (!found))
+		for(int i=0; i<allocate.size(); i++)
 		{
 			if(allocate.get(i).id == resID)
 			{
-				allocate.get(i).blocked = true;
-				found=true;
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
+	protected boolean acess(Resource res)
+	{
+		if(!res.blocked)
+		{
+			if(allocate.size()==0)
+			{
+				allocate.add(res);
+			}
+			else
+			{			
+				if(findID(res.id)<0)
+					allocate.add(res);
 			}
 			
-			i++;
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	
+	protected void blockResource(String resID)
+	{
+		Integer i = findID(resID);
+		
+		if(i>=0)
+			allocate.get(i).blocked = true;
+	}
 	
+	protected void freeResource(String resID)
+	{
+		Integer i = findID(resID);
+		
+		if(i>=0)
+			allocate.get(i).blocked = false;
+	}
 }

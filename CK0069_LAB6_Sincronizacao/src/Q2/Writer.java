@@ -1,5 +1,12 @@
 package Q2;
 
-public class Writer {
+public class Writer extends Process implements Runnable
+{
+
+	@Override
+	public void run() 
+	{
+		
+	}
 
 }
